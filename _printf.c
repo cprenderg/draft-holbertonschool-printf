@@ -74,6 +74,7 @@ int _printf(const char *format, ...)
 					break;
 				/* Edge cases */
 				case '\0':
+					format_pos++;
 					break;
 				default:
 					/* Multiple % in a row */

@@ -38,12 +38,11 @@ int _printf(const char *format, ...)
 		write(1, format_str, sizeof(char) * current_len);
 		free(format_str);
 		
-		if (format[format_pos] == '%' && format[format_pos + 1] == '%')
+		if ((format[format_pos] == '%' && format[format_pos + 1] == '%')
+			|| (format[format_pos] == '%' && format[format_pos + 1] == '\0'))
 		{
-			i = '%';
-			write(1, &i, 1);
+			chars_printed += print_char('%');
 			format_pos++;
-			chars_printed++;
 		}
 		else if (format[format_pos] == '%')
 		{

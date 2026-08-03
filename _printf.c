@@ -29,14 +29,19 @@ int _printf(const char *format, ...)
 		format_str = malloc(current_len * sizeof(char));
 		while (i < current_len)
 		{
-			/* could be format_pos - current_len + i - 1 */
 			format_str[i] = format[format_pos - current_len + i];
 			i++;
 		}
 		write(1, format_str, sizeof(char) * current_len);
 		free(format_str);
 		
-		if (format[format_pos] == '%')
+		if (format[format_pos] == '%' && format[format_pos + 1] == '%')
+		{
+			i = '%';
+			write(1, &i, 1);
+			format_pos++;
+		}
+		else if (format[format_pos] == '%')
 		{
 			type = format[format_pos + 1];
 			current_len = 0;

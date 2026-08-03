@@ -15,6 +15,5 @@ int print_str(char *str)
 		len++;
 	}
 	write(1, str, sizeof(char) * len);
-	free(str);
 	return (len);
 }

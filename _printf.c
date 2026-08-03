@@ -74,11 +74,8 @@ int _printf(const char *format, ...)
 					break;
 				default:
 					chars_printed += print_char(format[format_pos]);
-					if (format[format_pos + 1])
-					{
-						chars_printed += print_char(format[format_pos + 1]);
-					}
-					break;
+					format_pos++;
+					continue;
 			}
 			format_pos += 2;
 		}

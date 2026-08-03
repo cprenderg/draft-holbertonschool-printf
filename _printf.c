@@ -73,9 +73,6 @@ int _printf(const char *format, ...)
 					chars_printed += print_oct(va_arg(ap, unsigned int));
 					break;
 				/* Edge cases */
-				case '\0':
-					format_pos++;
-					break;
 				default:
 					/* Multiple % in a row */
 					if (format[format_pos - 1] != '%')

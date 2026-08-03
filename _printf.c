@@ -21,61 +21,64 @@ int _printf(const char *format, ...)
 	va_start(ap, format);
 	while (format[format_pos])
 	{
+		/* Get the length of the current segment */
 		current_len = 0;
 		while (format[format_pos] != '%' && format[format_pos])
 		{
 			format_pos++;
 			current_len++;
 		}
-		i = 0;
-		format_str = malloc(current_len * sizeof(char));
-		chars_printed += current_len;
-		while (i < current_len)
+		/* Print the current segment if it exists */
+		if (current_len > 0)
 		{
-			format_str[i] = format[format_pos - current_len + i];
-			i++;
+			i = 0;
+			format_str = malloc(current_len * sizeof(char));
+			chars_printed += current_len;
+			while (i < current_len)
+			{
+				format_str[i] = format[format_pos - current_len + i];
+				i++;
+			}
+			write(1, format_str, sizeof(char) * current_len);
+			free(format_str);
 		}
-		write(1, format_str, sizeof(char) * current_len);
-		free(format_str);
-		
-		if ((format[format_pos] == '%' && format[format_pos + 1] == '%')
-			|| (format[format_pos] == '%' && format[format_pos + 1] == '\0'))
-		{
-			chars_printed += print_char('%');
-			format_pos++;
-		}
-		else if (format[format_pos] == '%')
+
+		/* Printing correct format */
+		if (format[format_pos] == '%')
 		{
 			type = format[format_pos + 1];
-			current_len = 0;
 			
-			if (type == 's')
+			switch (type)
 			{
-				chars_printed += print_str(va_arg(ap, char *));
-			}
-			else if (type == 'c')
-			{
-				chars_printed += print_char(va_arg(ap, int));
-			}
-			else if (type == 'd' || type == 'i')
-			{
-				chars_printed += print_int(va_arg(ap, int));
-			}
-			else if (type == 'u')
-			{
-				chars_printed += print_unsigned_int(va_arg(ap, unsigned int));
-			}
-			else if (type == 'X')
-			{
-				chars_printed += print_uhex(va_arg(ap, unsigned int));
-			}
-			else if (type == 'x')
-			{
-				chars_printed += print_hex(va_arg(ap, unsigned int));
-			}
-			else if (type == 'o')
-			{
-				chars_printed += print_oct(va_arg(ap, unsigned int));
+				case 's':
+					chars_printed += print_str(va_arg(ap, char *));
+					break;
+				case 'c':
+					chars_printed += print_char(va_arg(ap, int));
+					break;
+				case 'd':
+				case 'i':
+					chars_printed += print_int(va_arg(ap, int));
+					break;
+				case 'u':
+					chars_printed += print_unsigned_int(va_arg(ap, unsigned int));
+					break;
+				case 'X':
+					chars_printed += print_uhex(va_arg(ap, unsigned int));
+					break;
+				case 'x':
+					chars_printed += print_hex(va_arg(ap, unsigned int));
+					break;
+				case 'o':
+					chars_printed += print_oct(va_arg(ap, unsigned int));
+					break;
+				default:
+					chars_printed += print_char(format[format_pos]);
+					if (format[format_pos + 1])
+					{
+						chars_printed += print_char(format[format_pos + 1]);
+					}
+					break;
 			}
 			format_pos += 2;
 		}

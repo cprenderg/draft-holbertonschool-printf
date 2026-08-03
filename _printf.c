@@ -73,7 +73,10 @@ int _printf(const char *format, ...)
 					chars_printed += print_oct(va_arg(ap, unsigned int));
 					break;
 				default:
-					chars_printed += print_char(format[format_pos]);
+					if (format[format_pos - 1] != '%')
+					{
+						chars_printed += print_char('%');
+					}
 					format_pos++;
 					continue;
 			}

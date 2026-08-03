@@ -74,6 +74,11 @@ int _printf(const char *format, ...)
 					break;
 				/* Edge cases */
 				case '\0':
+					/* % is only character in string */
+					if (format_pos == 0)
+					{
+						return (-1);
+					}
 					/* % at the end of the string */
 					format_pos++;
 					continue;

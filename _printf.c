@@ -74,6 +74,7 @@ int _printf(const char *format, ...)
 					break;
 				/* Edge cases */
 				case '\0':
+					/* % at the end of the string */
 					format_pos++;
 					continue;
 				default:

@@ -7,13 +7,9 @@
  */
 int _printf(const char *format, ...)
 {
-	
 	va_list ap;
 	char type;
-	int i;
-	int current_len;
 	int format_pos;
-	char *format_str;
 	int chars_printed;
 	
 	chars_printed = 0;
@@ -22,25 +18,10 @@ int _printf(const char *format, ...)
 	while (format[format_pos])
 	{
 		/* Get the length of the current segment */
-		current_len = 0;
 		while (format[format_pos] != '%' && format[format_pos])
 		{
+			chars_printed += print_char(format[format_pos]);
 			format_pos++;
-			current_len++;
-		}
-		/* Print the current segment if it exists */
-		if (current_len > 0)
-		{
-			i = 0;
-			format_str = malloc(current_len * sizeof(char));
-			chars_printed += current_len;
-			while (i < current_len)
-			{
-				format_str[i] = format[format_pos - current_len + i];
-				i++;
-			}
-			write(1, format_str, sizeof(char) * current_len);
-			free(format_str);
 		}
 
 		/* Printing correct format */

@@ -3,9 +3,9 @@
  * print_oct - prints an unsigned int as an octal
  * @num: integer to print as octal
  *
- * Return: void
+ * Return: length of the octal printed
  */
-void print_oct(unsigned int num)
+int print_oct(unsigned int num)
 {
 	char *str;
 	unsigned int temp_num;
@@ -29,4 +29,5 @@ void print_oct(unsigned int num)
 	}
 	write(1, str, sizeof(char) * len);
 	free(str);
+	return (len);
 }

@@ -3,9 +3,9 @@
  * print_unsigned_int - prints an unsigned int using write
  * @int: unsigned int to print
  *
- * Return: void
+ * Return: length of the unsigned int printed
  */
-void print_unsigned_int(unsigned int num)
+int print_unsigned_int(unsigned int num)
 {
 	char *str;
 	unsigned int temp_num;
@@ -31,5 +31,6 @@ void print_unsigned_int(unsigned int num)
 	}
 	write(1, str, sizeof(char) * len);
 	free(str);
+	return (len);
 }
 

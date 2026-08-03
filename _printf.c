@@ -14,7 +14,9 @@ int _printf(const char *format, ...)
 	int current_len;
 	int format_pos;
 	char *format_str;
+	int chars_printed;
 	
+	chars_printed = 0;
 	format_pos = 0;
 	va_start(ap, format);
 	while (format[format_pos])
@@ -27,6 +29,7 @@ int _printf(const char *format, ...)
 		}
 		i = 0;
 		format_str = malloc(current_len * sizeof(char));
+		chars_printed += current_len;
 		while (i < current_len)
 		{
 			format_str[i] = format[format_pos - current_len + i];
@@ -40,6 +43,7 @@ int _printf(const char *format, ...)
 			i = '%';
 			write(1, &i, 1);
 			format_pos++;
+			chars_printed++;
 		}
 		else if (format[format_pos] == '%')
 		{
@@ -48,35 +52,35 @@ int _printf(const char *format, ...)
 			
 			if (type == 's')
 			{
-				print_str(va_arg(ap, char *));
+				chars_printed += print_str(va_arg(ap, char *));
 			}
 			else if (type == 'c')
 			{
-				print_char(va_arg(ap, int));
+				chars_printed += print_char(va_arg(ap, int));
 			}
 			else if (type == 'd' || type == 'i')
 			{
-				print_int(va_arg(ap, int));
+				chars_printed += print_int(va_arg(ap, int));
 			}
 			else if (type == 'u')
 			{
-				print_unsigned_int(va_arg(ap, unsigned int));
+				chars_printed += print_unsigned_int(va_arg(ap, unsigned int));
 			}
 			else if (type == 'X')
 			{
-				print_uhex(va_arg(ap, unsigned int));
+				chars_printed += print_uhex(va_arg(ap, unsigned int));
 			}
 			else if (type == 'x')
 			{
-				print_hex(va_arg(ap, unsigned int));
+				chars_printed += print_hex(va_arg(ap, unsigned int));
 			}
 			else if (type == 'o')
 			{
-				print_oct(va_arg(ap, unsigned int));
+				chars_printed += print_oct(va_arg(ap, unsigned int));
 			}
 			format_pos += 2;
 		}
 	}
 	va_end(ap);
-	return (format_pos);
+	return (chars_printed);
 }

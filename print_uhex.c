@@ -3,9 +3,9 @@
  * print_uhex - prints an unsigned int in uppercase hexadecimal
  * @num: unsigned int to convert
  *
- * Return: void
+ * Return: length of the hexadecimal printed
  */
-void print_uhex(unsigned int num)
+int print_uhex(unsigned int num)
 {
 	char *str;
 	unsigned int temp_num;
@@ -54,4 +54,5 @@ void print_uhex(unsigned int num)
 	}
 	write(1, str, sizeof(char) * len);
 	free(str);
+	return (len);
 }

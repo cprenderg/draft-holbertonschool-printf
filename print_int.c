@@ -3,9 +3,9 @@
  * print_int - prints an integer using write
  * @num: integer to print
  *
- * Return: void
+ * Return: length of the integer printed
  */
-void print_int(int num)
+int print_int(int num)
 {
 	char *str;
 	int is_neg;
@@ -49,4 +49,5 @@ void print_int(int num)
 	}
 	write(1, str, sizeof(char) * len);
 	free(str);
+	return (len);
 }

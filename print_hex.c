@@ -3,9 +3,9 @@
  * print_hex - prints an unsigned int in lowercase hexadecimal
  * @num: unsigned int to convert
  *
- * Return: void
+ * Return: length of the string printed
  */
-void print_hex(unsigned int num)
+int print_hex(unsigned int num)
 {
 	char *str;
 	unsigned int temp_num;
@@ -54,4 +54,5 @@ void print_hex(unsigned int num)
 	}
 	write(1, str, sizeof(char) * len);
 	free(str);
+	return (len);
 }

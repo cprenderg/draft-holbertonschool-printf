@@ -3,9 +3,9 @@
  * print_str - prints a string using write
  * @str: string to print
  *
- * Return: void
+ * Return: length of the string printed
  */
-void print_str(char *str)
+int print_str(char *str)
 {
 	int len;
 
@@ -15,4 +15,6 @@ void print_str(char *str)
 		len++;
 	}
 	write(1, str, sizeof(char) * len);
+	free(str);
+	return (len);
 }

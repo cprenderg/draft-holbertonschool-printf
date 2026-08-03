@@ -3,9 +3,10 @@
  * print_char - prints a char using write
  * @num: integer to print as a char
  *
- * Return: void
+ * Return: 1
  */
-void print_char(int num)
+int print_char(int num)
 {
 	write(1, &num, 1);
+	return (1);
 }	

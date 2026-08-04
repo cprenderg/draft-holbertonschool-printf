@@ -12,6 +12,12 @@ int print_unsigned_int(unsigned int num)
 	int len;
 	int pos;
 
+	/* Edge case num is 0 */
+	if (num == 0)
+	{
+		write(1, "0", 1);
+		return (1);
+	}
 	len = 0;
 	/* calculating length of num for space allocation */
 	temp_num = num;

@@ -12,7 +12,12 @@ int print_hex(unsigned int num)
 	int len;
 	int pos;
 	
-
+	/* Edge case num is 0 */
+	if (num == 0)
+	{
+		write(1, "0", 1);
+		return (1);
+	}
 	temp_num = num;
 	len = 0;
 	/* Getting length of the hexadecimal string */

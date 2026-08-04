@@ -15,39 +15,54 @@ int print_int(int num)
 
 	is_neg = 0;
 	len = 0;
-	/* checking if num is negative */
-	if (num < 0)
+	/* Edge case num is 0 */
+	if (num == 0)
 	{
-		is_neg = 1;
-		num *= -1;
+		write(1, "0", 1);
+		return (1);
 	}
-	/* calculating length of num for space allocation */
-	temp_num = num;
-	while (temp_num > 0)
+	/* Edge case num is INT_MIN*/
+	else if (num == -2147483648)
 	{
-		len++;
-		temp_num /= 10;
+		write(1, "-2147483648", 11);
+		return (11);
 	}
-	/* Adding an extra byte for the '-' if negative */
-	if (is_neg)
+	else
 	{
-		len++;
+		/* checking if num is negative */
+		if (num < 0)
+		{
+			is_neg = 1;
+			num *= -1;
+		}
+		/* calculating length of num for space allocation */
+		temp_num = num;
+		while (temp_num > 0)
+		{
+			len++;
+			temp_num /= 10;
+		}
+		/* Adding an extra byte for the '-' if negative */
+		if (is_neg)
+		{
+			len++;
 
+		}
+		str = malloc(len * sizeof(char));
+		pos = len - 1;
+		/* Converting integer to string */
+		while (num > 0)
+		{
+			str[pos] = (num % 10) + '0';
+			num /= 10;
+			pos--;
+		}
+		if (is_neg)
+		{
+			str[0] = '-';
+		}
+		write(1, str, sizeof(char) * len);
+		free(str);
+		return (len);
 	}
-	str = malloc(len * sizeof(char));
-	pos = len - 1;
-	/* Converting integer to string */
-	while (num > 0)
-	{
-		str[pos] = (num % 10) + '0';
-		num /= 10;
-		pos--;
-	}
-	if (is_neg)
-	{
-		str[0] = '-';
-	}
-	write(1, str, sizeof(char) * len);
-	free(str);
-	return (len);
 }

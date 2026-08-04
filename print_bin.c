@@ -12,6 +12,12 @@ int print_bin(unsigned int num)
 	int len;
 	int pos;
 
+	/* num = 0 edge case */
+	if (num == 0)
+	{
+		write(1, "0", 1);
+		return (1);
+	}
 	temp_num = num;
 	len = 0;
 	/* Getting length of the binary string */

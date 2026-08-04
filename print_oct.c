@@ -21,6 +21,10 @@ int print_oct(unsigned int num)
 		len++;
 	}
 	str = malloc(len * sizeof(char));
+	if (str == NULL)
+		{
+			return (-1);
+		}
 	pos = len - 1;
 	/* Converting num to octal string */
 	while (num > 0)

@@ -21,6 +21,10 @@ int print_uhex(unsigned int num)
 		len++;
 	}
 	str = malloc(len * sizeof(char));
+	if (str == NULL)
+		{
+			return (-1);
+		}
 	pos = len - 1;
 	while (num > 0)
 	{

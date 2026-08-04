@@ -21,6 +21,10 @@ int print_unsigned_int(unsigned int num)
 		temp_num /= 10;
 	}
 	str = malloc(len * sizeof(char));
+	if (str == NULL)
+		{
+			return (-1);
+		}
 	pos = len - 1;
 	/* Converting integer to string */
 	while (num > 0)

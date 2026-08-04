@@ -15,6 +15,7 @@ int print_hex(unsigned int num)
 
 	temp_num = num;
 	len = 0;
+	/* Getting length of the hexadecimal string */
 	while (temp_num > 0)
 	{
 		temp_num /= 16;
@@ -22,6 +23,7 @@ int print_hex(unsigned int num)
 	}
 	str = malloc(len * sizeof(char));
 	pos = len - 1;
+	/* Converting num to hexadecimal string */
 	while (num > 0)
 	{
 		temp_num = num % 16;

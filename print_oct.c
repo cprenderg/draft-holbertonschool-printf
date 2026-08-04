@@ -14,6 +14,7 @@ int print_oct(unsigned int num)
 
 	temp_num = num;
 	len = 0;
+	/* Getting length of the octal string */
 	while (temp_num > 0)
 	{
 		temp_num /= 8;
@@ -21,6 +22,7 @@ int print_oct(unsigned int num)
 	}
 	str = malloc(len * sizeof(char));
 	pos = len - 1;
+	/* Converting num to octal string */
 	while (num > 0)
 	{
 		str[pos] = (num % 8) + '0';

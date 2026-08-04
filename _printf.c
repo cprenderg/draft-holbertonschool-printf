@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 	va_start(ap, format);
 	while (format[format_pos])
 	{
-		/* Get the length of the current segment */
+		/* Printing segment of format before a % */
 		while (format[format_pos] != '%' && format[format_pos])
 		{
 			chars_printed += print_char(format[format_pos]);
@@ -55,20 +55,12 @@ int _printf(const char *format, ...)
 					break;
 				/* Edge cases */
 				case '\0':
-					/* % is only character in string */
-					if (format_pos == 0)
-					{
+					/* single % at end of string */
 						return (-1);
-					}
-					/* % at the end of the string */
-					format_pos++;
-					continue;
+				case '%':
+					chars_printed += print_char('%');
+					break;
 				default:
-					/* Multiple % in a row */
-					if (format[format_pos - 1] != '%')
-					{
-						chars_printed += print_char('%');
-					}
 					format_pos++;
 					continue;
 			}

@@ -21,7 +21,7 @@ int print_int(int num)
 		write(1, "0", 1);
 		return (1);
 	}
-	/* Edge case num is INT_MIN*/
+	/* Edge case num is INT_MIN */
 	else if (num == -2147483648)
 	{
 		write(1, "-2147483648", 11);
@@ -49,6 +49,10 @@ int print_int(int num)
 
 		}
 		str = malloc(len * sizeof(char));
+		if (str == NULL)
+		{
+			return (-1);
+		}
 		pos = len - 1;
 		/* Converting integer to string */
 		while (num > 0)

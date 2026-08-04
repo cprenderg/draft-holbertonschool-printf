@@ -1,5 +1,19 @@
 # Integration Project: printf
 Directory for Integration Project: printf at Holberton completed with Felix.
+## Header file 
+[main.h](./main.h)
+
+## Project File Table 
+The following files are included in this project:
+
+| File      | Description |
+|---------- |-------------|
+|    _printf.c(./printf.c)       |      Prints anything and returns characters printed       |
+|           |             |
+|           |             |
+|           |             |
+|           |             |
+
 ## Known limitations
 * An uncoupled % at end of string should print nothing and return -1. This version will print everything before the uncoupled % and also return -1
 * Putting format specifiers that are not b, c, X, x, i, d, o, s, or u, will print the specifier instead.

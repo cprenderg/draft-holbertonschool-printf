@@ -12,4 +12,5 @@ int print_uhex(unsigned int num);
 int print_hex(unsigned int num);
 int print_oct(unsigned int num);
 int print_char(int num);
+int print_bin(unsigned int num);
 #endif

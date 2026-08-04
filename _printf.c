@@ -53,6 +53,9 @@ int _printf(const char *format, ...)
 				case 'o':
 					chars_printed += print_oct(va_arg(ap, unsigned int));
 					break;
+				case 'b':
+					chars_printed += print_bin(va_arg(ap, unsigned int));
+					break;
 				/* Edge cases */
 				case '\0':
 					/* single % at end of string */
